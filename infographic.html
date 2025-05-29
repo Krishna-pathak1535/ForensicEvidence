@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Evidence Management: Industry Trends & Market Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful
+        #FF6B6B (Coral Red)
+        #FFD166 (Sunny Yellow)
+        #06D6A0 (Tealish Green)
+        #118AB2 (Cerulean Blue)
+        #073B4C (Dark Midnight Blue/Almost Black - for text/background contrast)
+    -->
+    <!-- 
+        Infographic Narrative Plan:
+        1. Hero Section: Introduce the critical need for trust in digital evidence.
+        2. The Challenge: Highlight vulnerabilities in traditional evidence handling.
+        3. Emerging Technologies: Showcase blockchain, encryption, PoW as key trends.
+        4. The Forensic Evidence Management System (Project): Present as a case study.
+        5. Process Flow: Illustrate how the system secures evidence.
+        6. SWOT Analysis: Analyze the secure evidence management landscape.
+        7. Future Outlook: Discuss the future of digital forensics.
+        8. Conclusion: Reiterate the importance of innovation.
+
+        Visualization Choices (NO SVG, NO MERMAID JS confirmed):
+        - Hero - Donut Chart (Chart.js): Sources of Digital Evidence. Data: Conceptual. Goal: Inform. Justification: Shows composition.
+        - Challenge - Bar Chart (Chart.js): Perceived Tamper Risk. Data: Conceptual. Goal: Compare. Justification: Compares categories.
+        - Trends - Line Chart (Chart.js): Blockchain Adoption Growth. Data: Conceptual. Goal: Change. Justification: Shows trend over time.
+        - Trends - Pie Chart (Chart.js): Encryption Standards Usage. Data: Conceptual. Goal: Inform. Justification: Shows proportion.
+        - Process Flow - Structured HTML/Tailwind with Unicode Icons. Goal: Organize. Justification: Visually represents sequence.
+        - SWOT - Structured HTML/Tailwind Grid. Goal: Organize. Justification: Clear categorical presentation.
+        - Future Outlook - Radar Chart (Chart.js): Key Future Drivers. Data: Conceptual. Goal: Relationships/Compare. Justification: Shows multiple dimensions for comparison.
+        - All charts use Chart.js, rendering to Canvas. Label wrapping and tooltip config are implemented.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top left, #eef7ff 0%, #F8F9FA 50%, #f0f8ff 100%);
+            color: #073B4C;
+            min-height: 100vh;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(17, 138, 178, 0.1); /* Subtle border from palette */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px -8px rgba(0, 0, 0, 0.2);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #118AB2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #06D6A0; /* Tealish Green underline */
+            border-radius: 2px;
+        }
+        .sub-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #073B4C;
+            margin-bottom: 1rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.15), 0 6px 12px -4px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(6, 214, 160, 0.1); /* Subtle border from palette */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 8px 16px -6px rgba(0, 0, 0, 0.1);
+        }
+        .icon-placeholder {
+            font-size: 2.2rem;
+            color: #FF6B6B; /* Coral Red for icons */
+            margin-right: 0.75rem;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: #eef7ff; /* Light blue background for steps */
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-left: 5px solid #118AB2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .flow-step:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #FFD166; /* Sunny Yellow for arrows */
+            margin: 0.75rem 0;
+            text-align: center;
+            animation: bounce-arrow 1.5s infinite ease-in-out;
+        }
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+         .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .swot-item {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .swot-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .swot-strengths { background-color: #e6fffa; border-left: 6px solid #06D6A0; }
+        .swot-weaknesses { background-color: #fff5f5; border-left: 6px solid #FF6B6B; }
+        .swot-opportunities { background-color: #feefc3; border-left: 6px solid #FFD166; }
+        .swot-threats { background-color: #eef7ff; border-left: 6px solid #118AB2; }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(7, 59, 76, 0.1);
+        }
+        .sticky-nav a {
+            color: #073B4C;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .sticky-nav a:hover {
+            background-color: #118AB2;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(17, 138, 178, 0.4);
+        }
+        .contact-icon-link {
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        .contact-icon-link:hover {
+            transform: scale(1.1);
+        }
+        .contact-icon-link .text-3xl {
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
+        }
+        .contact-icon-link:hover .text-3xl {
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="sticky-nav">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-4 sm:space-x-6 overflow-x-auto">
+                <a href="#hero">Intro</a>
+                <a href="#challenge">Challenge</a>
+                <a href="#trends">Trends</a>
+                <a href="#casestudy">Case Study</a>
+                <a href="#processflow">Process</a>
+                <a href="#swot">SWOT</a>
+                <a href="#outlook">Outlook</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <section id="hero" class="text-center py-16 md:py-20">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6" style="color: #073B4C;">The Future of Forensic Integrity</h1>
+            <p class="text-2xl md:text-3xl mb-10 font-semibold" style="color: #118AB2;">Trends in Secure Digital Evidence Management</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="stat-card">
+                    <p class="text-6xl font-bold mb-4" style="color: #FF6B6B;">75%</p>
+                    <p class="text-xl font-medium">Projected Increase in Digital Evidence by 2028 (Conceptual)</p>
+                    <p class="text-md mt-3 text-gray-600">The sheer volume of digital data underscores the critical need for robust, verifiable management systems.</p>
+                </div>
+                <div class="card">
+                    <h3 class="sub-title text-center">Primary Sources of Digital Evidence (Conceptual)</h3>
+                    <div class="chart-container h-[280px] md:h-[320px]">
+                        <canvas id="sourcesOfEvidenceChart"></canvas>
+                    </div>
+                    <p class="text-sm mt-5 text-gray-700 text-center">Diverse sources like mobile devices, cloud services, and IoT contribute to the complexity of evidence collection and management.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenge" class="py-16 md:py-20">
+            <h2 class="section-title">The Challenge: Navigating the Digital Minefield</h2>
+            <p class="text-xl text-center mb-12 max-w-4xl mx-auto">Traditional methods of handling digital evidence face significant hurdles in maintaining integrity and a verifiable chain of custody in an increasingly complex digital landscape.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="card">
+                    <h3 class="sub-title"><span class="icon-placeholder">⚠️</span>Tamper Risk & Integrity Concerns</h3>
+                    <p class="mb-5 text-gray-800">Digital files are inherently easy to alter. Without robust safeguards, the authenticity of evidence can be questioned, potentially jeopardizing investigations and legal outcomes.</p>
+                    <div class="stat-card mb-4">
+                        <p class="text-5xl font-bold" style="color: #FF6B6B;">Over 60%</p>
+                        <p class="text-lg">Of forensic experts cite evidence integrity as a primary concern (Conceptual Stat).</p>
+                    </div>
+                </div>
+                <div class="card">
+                     <h3 class="sub-title"><span class="icon-placeholder">🔗</span>Chain of Custody Gaps</h3>
+                    <p class="mb-5 text-gray-800">Documenting every interaction with digital evidence is crucial. Gaps or inconsistencies in the chain of custody can render evidence inadmissible. Traditional logging can be prone to errors or manipulation.</p>
+                    <div class="chart-container h-[320px] md:h-[380px]">
+                        <canvas id="tamperRiskChart"></canvas>
+                    </div>
+                    <p class="text-sm mt-5 text-gray-700 text-center">Visualization of perceived tamper risk in traditional systems versus modern blockchain-secured systems (Conceptual).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trends" class="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl shadow-xl">
+            <h2 class="section-title">Emerging Technologies: The New Guard</h2>
+            <p class="text-xl text-center mb-12 max-w-4xl mx-auto">Innovations in cryptography and distributed ledger technology are revolutionizing how digital evidence is managed, offering unprecedented levels of security and verifiability.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="card text-center">
+                    <h3 class="sub-title"><span class="icon-placeholder">⛓️</span>Blockchain for Integrity</h3>
+                    <p class="mb-4 text-gray-800">Blockchain provides an immutable, time-stamped ledger, making any alteration to recorded evidence immediately detectable.</p>
+                    <div class="chart-container h-[280px]">
+                        <canvas id="blockchainAdoptionChart"></canvas>
+                    </div>
+                     <p class="text-sm mt-3 text-gray-600">Conceptual growth of blockchain adoption in forensics.</p>
+                </div>
+                <div class="card text-center">
+                    <h3 class="sub-title"><span class="icon-placeholder">🛡️</span>Advanced Encryption (AES)</h3>
+                    <p class="mb-4 text-gray-800">Strong encryption standards like AES protect evidence confidentiality from unauthorized access during storage and transit.</p>
+                    <div class="chart-container h-[280px]">
+                        <canvas id="encryptionStandardsChart"></canvas>
+                    </div>
+                    <p class="text-sm mt-3 text-gray-600">Conceptual usage of encryption standards.</p>
+                </div>
+                <div class="card text-center">
+                    <h3 class="sub-title"><span class="icon-placeholder">⚙️</span>Proof-of-Work & Verification</h3>
+                    <p class="mb-4 text-gray-800">PoW adds a computational hurdle to altering the blockchain, enhancing security. Automated verification tools ensure ongoing chain integrity.</p>
+                    <div class="p-8 bg-gradient-to-br from-teal-100 to-green-100 rounded-xl shadow-inner border border-teal-200">
+                        <span class="text-6xl" style="color: #06D6A0;">⛏️ ✅</span>
+                        <p class="mt-3 font-bold text-xl" style="color:#073B4C;">Enhanced Security & Trust</p>
+                        <p class="text-sm text-gray-700 mt-1">Combining PoW with verifiable logs builds a robust defense against tampering, ensuring evidence reliability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="casestudy" class="py-16 md:py-20">
+            <h2 class="section-title">Case Study: Forensic Evidence Management System</h2>
+            <p class="text-xl text-center mb-12 max-w-4xl mx-auto">The "Forensic Evidence Management System" (as per the provided GitHub project) exemplifies these trends, integrating key technologies to offer a secure and verifiable solution.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card hover:shadow-xl transition-shadow">
+                    <h4 class="font-semibold text-xl mb-3 text-center" style="color:#118AB2;"><span class="icon-placeholder">📄</span>Secure Upload & Encryption</h4>
+                    <p class="text-gray-800">Evidence files are encrypted using AES upon upload, safeguarding sensitive data from the outset.</p>
+                </div>
+                <div class="card hover:shadow-xl transition-shadow">
+                    <h4 class="font-semibold text-xl mb-3 text-center" style="color:#118AB2;"><span class="icon-placeholder">🔗</span>Blockchain Ledgering</h4>
+                    <p class="text-gray-800">Each piece of evidence, along with its metadata and hash, is recorded as a block in an immutable chain.</p>
+                </div>
+                <div class="card hover:shadow-xl transition-shadow">
+                    <h4 class="font-semibold text-xl mb-3 text-center" style="color:#118AB2;"><span class="icon-placeholder">⛏️</span>Proof-of-Work Validation</h4>
+                    <p class="text-gray-800">New blocks require PoW, making the chain highly resistant to unauthorized modifications.</p>
+                </div>
+                <div class="card hover:shadow-xl transition-shadow">
+                    <h4 class="font-semibold text-xl mb-3 text-center" style="color:#118AB2;"><span class="icon-placeholder">✅</span>Integrity Verification</h4>
+                    <p class="text-gray-800">The system allows for on-demand verification of the entire blockchain's integrity.</p>
+                </div>
+                <div class="card hover:shadow-xl transition-shadow">
+                    <h4 class="font-semibold text-xl mb-3 text-center" style="color:#118AB2;"><span class="icon-placeholder">👤</span>User Authentication</h4>
+                    <p class="text-gray-800">Secure login and role-based access control ensure only authorized personnel can manage evidence.</p>
+                </div>
+                <div class="card hover:shadow-xl transition-shadow">
+                    <h4 class="font-semibold text-xl mb-3 text-center" style="color:#118AB2;"><span class="icon-placeholder">🗂️</span>Admin Controls</h4>
+                    <p class="text-gray-800">An administrative backend allows for management of users and oversight of the system.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="processflow" class="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl shadow-xl">
+            <h2 class="section-title">Process Flow: Securing Evidence from A to Z</h2>
+            <p class="text-xl text-center mb-12 max-w-4xl mx-auto">This simplified flow illustrates how the Forensic Evidence Management System processes and secures digital evidence.</p>
+            <div class="max-w-2xl mx-auto">
+                <div class="flow-step">
+                    <span class="icon-placeholder">⬆️</span>
+                    <div><strong>1. User Uploads File:</strong> Authorized user uploads the digital evidence file via the secure interface.</div>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-step">
+                    <span class="icon-placeholder">🔑</span>
+                    <div><strong>2. System Encrypts File:</strong> The file is immediately encrypted using AES to protect its contents.</div>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-step">
+                    <span class="icon-placeholder">#️⃣</span>
+                    <div><strong>3. Evidence Hash Generated:</strong> A unique cryptographic hash of the encrypted file is created.</div>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-step">
+                    <span class="icon-placeholder">🧱</span>
+                    <div><strong>4. New Block Created:</strong> A new block is formed containing the timestamp, evidence hash, previous block's hash, and filename.</div>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-step">
+                    <span class="icon-placeholder">⚙️</span>
+                    <div><strong>5. Proof-of-Work Performed:</strong> The system finds a nonce that satisfies the PoW difficulty for the new block.</div>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-step">
+                    <span class="icon-placeholder">🔗</span>
+                    <div><strong>6. Block Added to Chain:</strong> The validated block is permanently added to the blockchain, linked to the previous block.</div>
+                </div>
+                <div class="flow-arrow">▼</div>
+                <div class="flow-step">
+                    <span class="icon-placeholder">🔍</span>
+                    <div><strong>7. Chain Verifiable On-Demand:</strong> The integrity of the entire chain can be verified at any time by administrators.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="py-16 md:py-20">
+            <h2 class="section-title">SWOT Analysis: Secure Evidence Management Landscape</h2>
+            <p class="text-xl text-center mb-12 max-w-4xl mx-auto">A strategic overview of the strengths, weaknesses, opportunities, and threats in the evolving domain of secure digital evidence management.</p>
+            <div class="swot-grid">
+                <div class="swot-item swot-strengths">
+                    <h3 class="sub-title" style="color:#06D6A0;">Strengths 💪</h3>
+                    <ul class="list-disc list-inside text-gray-800">
+                        <li>High data integrity & immutability</li>
+                        <li>Enhanced transparency and auditability</li>
+                        <li>Reduced risk of human error/manipulation</li>
+                        <li>Strong cryptographic security</li>
+                    </ul>
+                </div>
+                <div class="swot-item swot-weaknesses">
+                    <h3 class="sub-title" style="color:#FF6B6B;">Weaknesses 📉</h3>
+                    <ul class="list-disc list-inside text-gray-800">
+                        <li>Initial setup complexity</li>
+                        <li>Scalability for extremely high volumes (PoW)</li>
+                        <li>Reliance on secure key management</li>
+                        <li>Learning curve for new users</li>
+                    </ul>
+                </div>
+                <div class="swot-item swot-opportunities">
+                    <h3 class="sub-title" style="color:#FFD166;">Opportunities 📈</h3>
+                    <ul class="list-disc list-inside text-gray-800">
+                        <li>Growing demand for digital forensics solutions</li>
+                        <li>Integration with broader legal tech ecosystems</li>
+                        <li>Potential for cross-agency collaboration</li>
+                        <li>Adoption in new sectors (e.g., corporate investigations)</li>
+                    </ul>
+                </div>
+                <div class="swot-item swot-threats">
+                    <h3 class="sub-title" style="color:#118AB2;">Threats ⚠️</h3>
+                    <ul class="list-disc list-inside text-gray-800">
+                        <li>Evolving cyber threats & attack vectors</li>
+                        <li>Regulatory changes & legal interpretations</li>
+                        <li>Competition from established vendors</li>
+                        <li>Resistance to new technology adoption</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="outlook" class="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl shadow-xl">
+            <h2 class="section-title">Future Outlook: The Road Ahead for Digital Forensics</h2>
+            <p class="text-xl text-center mb-12 max-w-4xl mx-auto">The landscape of digital forensics is rapidly evolving, driven by technological advancements and increasing digital dependency. Key areas will see significant development.</p>
+            <div class="card">
+                <h3 class="sub-title text-center">Key Future Drivers in Digital Forensics (Conceptual)</h3>
+                <div class="chart-container h-[300px] md:h-[350px]">
+                    <canvas id="futureDriversChart"></canvas>
+                </div>
+                <p class="text-sm mt-5 text-gray-700 text-center">A conceptual representation of the relative importance of various factors shaping the future of digital evidence management.</p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-16 md:py-20">
+            <h2 class="section-title">Conclusion: Building Trust in a Digital World</h2>
+            <p class="text-2xl md:text-3xl mb-8 font-semibold" style="color: #073B4C;">The Forensic Evidence Management System stands as a testament to the power of innovative technology in safeguarding justice.</p>
+            <p class="text-lg max-w-4xl mx-auto text-gray-800">By embracing blockchain, advanced encryption, and robust verification mechanisms, we can ensure that digital evidence remains a reliable and undeniable pillar in investigations, fostering trust and accountability in an increasingly digital world.</p>
+            <div class="mt-10">
+                <p class="text-xl font-bold mb-4" style="color: #118AB2;">Connect with the Developer:</p>
+                <div class="flex justify-center space-x-8 mt-4">
+                    <a href="mailto:krishna.pathak2003@gmail.com" class="text-gray-700 hover:text-blue-600 transition-colors contact-icon-link">
+                        <span class="text-4xl">📧</span>
+                        <span class="block text-base font-medium mt-1">Email</span>
+                    </a>
+                    <a href="https://github.com/Krishna-pathak1535" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900 transition-colors contact-icon-link">
+                        <span class="text-4xl">🐙</span>
+                        <span class="block text-base font-medium mt-1">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krishnanand-pathak/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-blue-700 transition-colors contact-icon-link">
+                        <span class="text-4xl">💼</span>
+                        <span class="block text-base font-medium mt-1">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function wrapLabel(label, maxCharsPerLine = 16) {
+            if (typeof label !== 'string' || label.length <= maxCharsPerLine) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if (currentLine.length + word.length + (currentLine ? 1 : 0) > maxCharsPerLine) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#073B4C',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#073B4C',
+                        font: {
+                            size: 10
+                        },
+                        callback: function(value, index, ticks) {
+                            return wrapLabel(this.getLabelForValue(value));
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#073B4C',
+                        font: {
+                            size: 10
+                        }
+                    },
+                    grid: {
+                        color: '#E0E0E0'
+                    }
+                }
+            }
+        };
+
+        // Chart 1: Sources of Digital Evidence (Donut Chart)
+        const sourcesOfEvidenceCtx = document.getElementById('sourcesOfEvidenceChart').getContext('2d');
+        new Chart(sourcesOfEvidenceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Mobile Devices', 'Cloud Services', 'IoT Devices', 'Traditional Computers', 'Network Data'],
+                datasets: [{
+                    data: [30, 25, 15, 20, 10],
+                    backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2', '#073B4C'],
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#073B4C',
+                            font: {
+                                size: 12
+                            },
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const backgroundColor = data.datasets[0].backgroundColor[i];
+                                        const borderColor = data.datasets[0].borderColor ? data.datasets[0].borderColor[i] : backgroundColor;
+                                        const value = data.datasets[0].data[i];
+                                        const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                        return {
+                                            text: `${wrapLabel(label)} (${percentage})`,
+                                            fillStyle: backgroundColor,
+                                            strokeStyle: borderColor,
+                                            lineWidth: 1,
+                                            hidden: !chart.isDatasetVisible(0) || chart.getDatasetMeta(0).data[i].hidden,
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            },
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                return `${label}: ${value} (${percentage})`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Perceived Tamper Risk (Bar Chart)
+        const tamperRiskCtx = document.getElementById('tamperRiskChart').getContext('2d');
+        new Chart(tamperRiskCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Traditional Paper-based Records'),
+                    wrapLabel('Standard Digital Storage'),
+                    wrapLabel('Cloud Storage with Basic Security'),
+                    wrapLabel('Blockchain-Secured System (Proposed)')
+                ],
+                datasets: [{
+                    label: 'Perceived Tamper Risk (%)',
+                    data: [85, 70, 50, 10],
+                    backgroundColor: ['#FF6B6B', '#FFD166', '#118AB2', '#06D6A0'],
+                    borderColor: ['#D14F4F', '#D1A34F', '#0E6B8C', '#04A078'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Risk Percentage (%)',
+                            color: '#073B4C'
+                        },
+                        ticks: {
+                            color: '#073B4C'
+                        },
+                        grid: {
+                            color: '#E0E0E0'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#073B4C',
+                            font: {
+                                size: 10
+                            },
+                            callback: function(value, index, ticks) {
+                                return wrapLabel(this.getLabelForValue(value));
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Blockchain Adoption Growth (Line Chart)
+        const blockchainAdoptionCtx = document.getElementById('blockchainAdoptionChart').getContext('2d');
+        new Chart(blockchainAdoptionCtx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025 (Est.)', '2026 (Proj.)'],
+                datasets: [{
+                    label: 'Adoption Rate (%)',
+                    data: [5, 10, 18, 25, 35, 45, 55],
+                    borderColor: '#118AB2',
+                    backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year',
+                            color: '#073B4C'
+                        },
+                        ticks: {
+                            color: '#073B4C'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Adoption Rate (%)',
+                            color: '#073B4C'
+                        },
+                        ticks: {
+                            color: '#073B4C'
+                        },
+                        grid: {
+                            color: '#E0E0E0'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 4: Encryption Standards Usage (Pie Chart)
+        const encryptionStandardsCtx = document.getElementById('encryptionStandardsChart').getContext('2d');
+        new Chart(encryptionStandardsCtx, {
+            type: 'pie',
+            data: {
+                labels: ['AES-256', 'RSA', 'Twofish', 'Blowfish', 'Other'],
+                datasets: [{
+                    data: [60, 20, 8, 7, 5],
+                    backgroundColor: ['#06D6A0', '#FFD166', '#FF6B6B', '#118AB2', '#073B4C'],
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#073B4C',
+                            font: {
+                                size: 12
+                            },
+                             generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map(function(label, i) {
+                                        const backgroundColor = data.datasets[0].backgroundColor[i];
+                                        const borderColor = data.datasets[0].borderColor ? data.datasets[0].borderColor[i] : backgroundColor;
+                                        const value = data.datasets[0].data[i];
+                                        const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                        return {
+                                            text: `${wrapLabel(label)} (${percentage})`,
+                                            fillStyle: backgroundColor,
+                                            strokeStyle: borderColor,
+                                            lineWidth: 1,
+                                            hidden: !chart.isDatasetVisible(0) || chart.getDatasetMeta(0).data[i].hidden,
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            },
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                return `${label}: ${value} (${percentage})`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 5: Future Drivers (Radar Chart)
+        const futureDriversCtx = document.getElementById('futureDriversChart').getContext('2d');
+        new Chart(futureDriversCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('AI & Automation'),
+                    wrapLabel('Cloud Forensics'),
+                    wrapLabel('IoT Forensics'),
+                    wrapLabel('Regulatory Compliance'),
+                    wrapLabel('Quantum Computing Impact')
+                ],
+                datasets: [{
+                    label: 'Importance Score (1-10)',
+                    data: [8, 7, 6, 9, 5],
+                    backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                    borderColor: '#118AB2',
+                    pointBackgroundColor: '#118AB2',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#118AB2'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 10,
+                        ticks: {
+                            stepSize: 2,
+                            color: '#073B4C'
+                        },
+                        pointLabels: {
+                            color: '#073B4C',
+                            font: {
+                                size: 12
+                            },
+                            callback: function(value) {
+                                return wrapLabel(value);
+                            }
+                        },
+                        grid: {
+                            color: '#E0E0E0'
+                        },
+                        angleLines: {
+                            color: '#E0E0E0'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
